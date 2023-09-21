@@ -1,0 +1,19 @@
+﻿@using FrontNexti.ViewModels;
+@model List<EventoVM>
+@{
+}
+<table class="table table-striped">
+    <tr>
+        <th> Evento</th>
+        <th> Evento</th>
+        <th> Evento</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td> @item.DescripcionEvento</td>
+            <td> @item.Precio</td>
+            <td> @item.FechaCreacion</td>
+        </tr>
+    }
+</table>

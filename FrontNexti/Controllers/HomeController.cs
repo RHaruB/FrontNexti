@@ -1,4 +1,5 @@
 ﻿using FrontNexti.Models;
+using FrontNexti.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,26 +8,25 @@ namespace FrontNexti.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IEvento _evento;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger , IEvento evento)
         {
             _logger = logger;
+            _evento = evento;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        public PartialViewResult Tabla()
         {
-            return View();
+            var evento = _evento.GetAllEventos();
+
+            return PartialView("_tabla.cshtml", evento);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+       
     }
 }

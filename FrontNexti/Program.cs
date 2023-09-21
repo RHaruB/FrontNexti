@@ -1,4 +1,7 @@
+using FrontNexti.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<IEvento, EventoService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
